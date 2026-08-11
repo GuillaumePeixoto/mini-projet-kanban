@@ -1,0 +1,53 @@
+body{
+  margin: 0;
+}
+
+#root{
+  margin: 0px;
+  font-family: 'Roboto', 'sans-serif';
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#logo-site{
+  width: 100px;
+}
+
+#nav-bar{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+  height: 100px;
+  background-color: aquamarine;
+}
+
+main{
+  display: flex;
+  flex: 1;
+}
+
+.content{
+  display: flex;
+  flex: 1;
+}
+
+#side-bar{
+  width: 300px;
+  display: flex;
+  background-color: aqua;
+}
+
+footer{
+  background-color: blue;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer a{
+  text-decoration: none;
+  color: black;
+}
