@@ -10,13 +10,17 @@ function App() {
 
   const [tasksData, setTasksData] = useState(taskData);
 
+  const deleteTask = (idElement) => {
+    setTasksData(tasksData.filter((task) => task.id !== idElement))
+  }
+
   return (
     <>
       <Header></Header>
       <main>
           <SideBar></SideBar>
           <div className='content'>
-              <Board tasks={tasksData} />
+              <Board tasks={tasksData} onDelete={deleteTask} />
           </div>
       </main>
       <Footer/>

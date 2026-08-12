@@ -80,29 +80,44 @@ main{
   border: 1px solid black;
   border-radius: 10px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
 }
 
-.task-list-per-status h2{
-  margin-top: 0px;
+.task-list-per-status h2, .task-list-per-status hr{
+  margin: 0px;
 }
 
 .tasks-list{
   border: 1px solid rgb(197, 196, 196);
   border-radius: 5px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  cursor: pointer;
 }
 
 .tasks-list h4{
   margin: 0px;
 }
 
-.tasks-list .person-in-charge{
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  column-gap: 20px;
-  padding: 10px 0px;
-  align-items: center;
+.tasks-list p{
+  margin: 0px;
+}
+
+.task-description-container{
+  display: grid;
+  min-width: 0;
+}
+
+.task-description{
+  font-style: italic;
+  margin: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 footer{
@@ -116,4 +131,23 @@ footer{
 footer a{
   text-decoration: none;
   color: black;
+}
+
+.delete-task{
+  visibility: hidden;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.delete-task:hover{
+  border-color: #4fb3ec !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+}
+
+.tasks-list:hover button.delete-task{
+  visibility: initial;
 }
