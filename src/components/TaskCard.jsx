@@ -1,4 +1,4 @@
-function TaskCard({taskDetails, onDelete, onClick}) {
+function TaskCard({taskDetails, onDelete, onClick, onDragStart}) {
   const colorByPriority = {
     High: "red",
     Medium: "orange",
@@ -6,7 +6,7 @@ function TaskCard({taskDetails, onDelete, onClick}) {
   };
 
   return (
-    <div onClick={()=> onClick(taskDetails)} className="tasks-list" style={{ borderLeft: `6px solid ${colorByPriority[taskDetails.priority]}` }}>
+    <div onClick={()=> onClick(taskDetails)} draggable={true} onDragStart={() => onDragStart(taskDetails.id)} className="tasks-list" style={{ borderLeft: `6px solid ${colorByPriority[taskDetails.priority]}` }}>
         <h4>{taskDetails.title}</h4>
         
         <p><strong>{taskDetails.assignee}</strong></p>

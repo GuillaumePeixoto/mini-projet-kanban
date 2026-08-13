@@ -20,6 +20,23 @@ function App() {
     setTasksData(tasksData.filter((task) => task.id !== idElement));
   };
 
+
+  const [draggedTaskId, setDraggedTaskId] = useState(null);
+
+  function handleDragStart(taskId) {
+    setDraggedTaskId(taskId);
+  }
+
+  function handleDrop(newStatus) {
+    setTasksData((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === draggedTaskId ? { ...task, status: newStatus } : task
+      )
+    );
+    setDraggedTaskId(null);
+  }
+
+
   return (
     <>
       <Header></Header>
@@ -27,7 +44,7 @@ function App() {
         <SideBar></SideBar>
         <div className="content">
           <Routes>
-            <Route path ='/' element = {<Board tasks={tasksData} onDelete={deleteTask} />}></Route>
+            <Route path ='/' element = {<Board tasks={tasksData} onDelete={deleteTask} onDragStart={handleDragStart} onDrop={handleDrop} />}></Route>
             <Route path = '/addTask' element={<AddTask/>}></Route>
             <Route path = '/About' element={<About/>}></Route>
             <Route path = '*' element= {<NotFound/>}> </Route>

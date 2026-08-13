@@ -2,7 +2,7 @@ import { useState } from "react";
 import TaskCard from "./TaskCard";
 import ModalTask from "./Modal";
 
-function BoardList({status, tasks, onDelete}) {
+function BoardList({status, tasks, onDelete, onDragStart, onDrop}) {
     const [show, setShow] = useState(false);
     const [taskState, setTask] = useState(null);
 
@@ -13,13 +13,13 @@ function BoardList({status, tasks, onDelete}) {
     }
 
     return(
-        <div className="task-list-per-status">
+        <div className="task-list-per-status" onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(status)}>
             <h2>{status}</h2>
             <hr />
             {tasks.map((task) => {
                 return(
                     <div key={"task-"+task.id}>
-                        <TaskCard  taskDetails={task} onDelete={onDelete} onClick ={()=> clickModal(task)}></TaskCard>
+                        <TaskCard  taskDetails={task} onDelete={onDelete} onClick ={()=> clickModal(task)} onDragStart={onDragStart}></TaskCard>
                     </div>
                     
                 )       

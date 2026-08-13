@@ -12,16 +12,17 @@ function ModalTask({show, onHide, task}) {
         </Modal.Header>
         <Modal.Body>
             <div>
-                <p>{task?.description}</p>
+                <p>Description :{task?.description}</p>
+                <p>Status: {task?.status}</p>
+                <p>Assignee: {task?.assignee}</p>
+                <p>Priority: {task?.priority}</p>
+                <p>Creation Date: {task?.createdDate}</p>
+                <p>Due Date: {task?.dueDate}</p>
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={onHide}>
-            Save Changes
-          </Button>
+          <p>Button update</p>
+          <p>Button delete</p>
         </Modal.Footer>
       </Modal>
     </>
