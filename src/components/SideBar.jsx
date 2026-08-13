@@ -1,10 +1,21 @@
+import { Link } from "react-router-dom";
+
 function SideBar() {
 
     return(
         <div id="side-bar">
             <div>
-                <a to="/">Home</a>
-                <a to="/task/5">Add task</a>
+                <Link to={'/'}>
+                Home
+                </Link>
+                <Link to={'/addTask'}>
+                Add Task
+                </Link>
+                <Link to={'/About'}>
+                About
+                </Link>
+                
+            
             </div>
         </div>
     );

@@ -1,4 +1,6 @@
 import BoardList from "../components/BoardList";
+import ModalTask from "../components/Modal";
+
 
 function Board({tasks, onDelete}) {
   const statusType = ["To Do", "In Progress", "Done"];
@@ -11,7 +13,9 @@ function Board({tasks, onDelete}) {
             const dataPerStatus = tasks.filter((task) => task.status === element);
             return (<BoardList key={i} status={element} tasks={dataPerStatus} onDelete={onDelete} />)
         })}
+        <ModalTask/>
       </div>
+ 
     </>
   );
 }
