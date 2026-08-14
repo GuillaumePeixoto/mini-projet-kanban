@@ -11,7 +11,7 @@ function BoardList({status, tasks, onDelete, onDragStart, onDrop}) {
         setShow(true);
         console.log(taskSelected)
     }
-
+    console.log(onDelete)
     return(
         <div className="task-list-per-status" onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(status)}>
             <h2>{status}</h2>
@@ -19,12 +19,12 @@ function BoardList({status, tasks, onDelete, onDragStart, onDrop}) {
             {tasks.map((task) => {
                 return(
                     <div key={"task-"+task.id}>
-                        <TaskCard  taskDetails={task} onDelete={onDelete} onClick ={()=> clickModal(task)} onDragStart={onDragStart}></TaskCard>
+                        <TaskCard  taskDetails={task}  onClick ={()=> clickModal(task)} onDragStart={onDragStart}></TaskCard>
                     </div>
                     
                 )       
             })}
-            <ModalTask show = {show} onHide={() => setShow(false)} task={taskState}/>
+            <ModalTask show = {show} onHide={() => setShow(false)} task={taskState} onDelete={onDelete}/>
         </div>
     );
 }

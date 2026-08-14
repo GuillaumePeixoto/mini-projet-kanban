@@ -10,7 +10,7 @@ import { Route, Routes} from "react-router-dom";
 import AddTask from "./pages/AddTask";
 import About from "./pages/About";
 import NotFound from "./pages/NotFoundPage";
-
+import FormTask from "./pages/FormTask";
 
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
             <Route path ='/' element = {<Board tasks={tasksData} onDelete={deleteTask} onDragStart={handleDragStart} onDrop={handleDrop} />}></Route>
             <Route path = '/addTask' element={<AddTask/>}></Route>
             <Route path = '/About' element={<About/>}></Route>
+           <Route path="/update-task/:id" element = {<FormTask/>}></Route >
             <Route path = '*' element= {<NotFound/>}> </Route>
           </Routes>
         </div>

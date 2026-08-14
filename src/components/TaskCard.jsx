@@ -1,4 +1,4 @@
-function TaskCard({taskDetails, onDelete, onClick, onDragStart}) {
+function TaskCard({taskDetails, onClick, onDragStart}) {
   const colorByPriority = {
     High: "red",
     Medium: "orange",
@@ -14,7 +14,6 @@ function TaskCard({taskDetails, onDelete, onClick, onDragStart}) {
             <div>
                               <p>Date limite : {taskDetails.dueDate}</p>
             </div>
-            <button className="delete-task" onClick={() => onDelete(taskDetails.id)} style={{ borderRadius: '100%', border: '1px solid grey' }}>🗑️</button>
         </div>
         
     </div>
