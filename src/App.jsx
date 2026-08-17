@@ -47,7 +47,7 @@ function App() {
             <Route path ='/' element = {<Board tasks={tasksData} onDelete={deleteTask} onDragStart={handleDragStart} onDrop={handleDrop} />}></Route>
             <Route path = '/addTask' element={<AddTask/>}></Route>
             <Route path = '/About' element={<About/>}></Route>
-           <Route path="/update-task/:id" element = {<FormTask/>}></Route >
+           <Route path="/update-task/:id" element = {<FormTask tasks={tasksData}/>}></Route >
             <Route path = '*' element= {<NotFound/>}> </Route>
           </Routes>
         </div>

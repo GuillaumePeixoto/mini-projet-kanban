@@ -2,11 +2,15 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router-dom";
 
-
-function FormTask() {
+function FormTask(props) {
+  const param = useParams();
+  const taskToUpdate = props.tasks.find((task) => task.id === param["id"]);
+  console.log(taskToUpdate);
+  console.log(param);
   const [titleTask, setTitleTask] = useState("");
   const [description, setDescription] = useState("");
   const [assigneeTask, setAssigneeTask] = useState("");
@@ -19,9 +23,18 @@ function FormTask() {
     new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
   );
   function handleSubmit(event) {
-  event.preventDefault();
-  
-}
+    event.preventDefault();
+    const taskForm = {
+      title: titleTask,
+      description: description,
+      assignee: assigneeTask,
+      status: status,
+      priority: priority,
+      createdDate: createdDate,
+      dueDate: dueDate,
+    };
+    console.log(taskForm);
+  }
 
   return (
     <div>
@@ -75,28 +88,26 @@ function FormTask() {
           <option value="High">High</option>
         </Form.Select>
         <Form.Group controlId="dateSelection">
-        <Form.Label>Choisir une date</Form.Label>
-        <div className="custom-datepicker-wrapper w-100">
-        <DatePicker
-            selected={createdDate} 
-            onChange={(date) => setCreatedDate(date)}
-            className="form-control"
-            dateFormat="yyyy-MM-dd"
-            
-          /></div>
           <Form.Label>Choisir une date</Form.Label>
           <div className="custom-datepicker-wrapper w-100">
-        <DatePicker
-            selected={dueDate} 
-            onChange={(date) => setDueDate(date)}
-            className="form-control"
-            dateFormat="yyyy-MM-dd"
-            
-          /></div>
-        
-      </Form.Group>
-    <Button type="submit">Submit form</Button>
-
+            <DatePicker
+              selected={createdDate}
+              onChange={(date) => setCreatedDate(date)}
+              className="form-control"
+              dateFormat="yyyy-MM-dd"
+            />
+          </div>
+          <Form.Label>Choisir une date</Form.Label>
+          <div className="custom-datepicker-wrapper w-100">
+            <DatePicker
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+              className="form-control"
+              dateFormat="yyyy-MM-dd"
+            />
+          </div>
+        </Form.Group>
+        <Button type="submit">Submit form</Button>
       </Form>
     </div>
   );
