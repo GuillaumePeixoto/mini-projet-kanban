@@ -9,9 +9,7 @@ function BoardList({status, tasks, onDelete, onDragStart, onDrop}) {
     function clickModal (taskSelected){
         setTask(taskSelected);
         setShow(true);
-        console.log(taskSelected)
     }
-    console.log(onDelete)
     return(
         <div className="task-list-per-status" onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(status)}>
             <h2>{status}</h2>

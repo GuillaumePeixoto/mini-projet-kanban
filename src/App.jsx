@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import Board from "./pages/Board";
 import taskData from "./assets/data/tasksData.json";
 import { Route, Routes} from "react-router-dom";
-import AddTask from "./pages/AddTask";
 import About from "./pages/About";
 import NotFound from "./pages/NotFoundPage";
 import FormTask from "./pages/FormTask";
@@ -15,6 +14,17 @@ import FormTask from "./pages/FormTask";
 
 function App() {
   const [tasksData, setTasksData] = useState(taskData);
+
+  const addTask = (element) => {
+    setTasksData([...tasksData, element]);
+  }
+
+  const updateTask = (element) => {
+    let copyOfTasks = taskData;
+    let taskToUpdate = copyOfTasks.map(task => task.id).indexOf(element.id);
+    copyOfTasks[taskToUpdate] = element;
+    setTasksData(copyOfTasks);
+  }
 
   const deleteTask = (idElement) => {
     setTasksData(tasksData.filter((task) => task.id !== idElement));
@@ -45,9 +55,9 @@ function App() {
         <div className="content">
           <Routes>
             <Route path ='/' element = {<Board tasks={tasksData} onDelete={deleteTask} onDragStart={handleDragStart} onDrop={handleDrop} />}></Route>
-            <Route path = '/addTask' element={<AddTask/>}></Route>
+            <Route path = '/addTask' element={<FormTask addTask={addTask} />}></Route>
             <Route path = '/About' element={<About/>}></Route>
-           <Route path="/update-task/:id" element = {<FormTask tasks={tasksData}/>}></Route >
+           <Route path="/update-task/:id" element = {<FormTask tasks={tasksData} updateTask={updateTask} />}></Route >
             <Route path = '*' element= {<NotFound/>}> </Route>
           </Routes>
         </div>
