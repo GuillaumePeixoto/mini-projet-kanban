@@ -7,7 +7,7 @@ function Board({tasks, onDelete, onDragStart, onDrop}) {
 
   return (
     <>
-      <h2>Board</h2>
+      <h1>Board</h1>
       <div className="tasks-manager">
         {statusType.map((element, i) => {
             const dataPerStatus = tasks.filter((task) => task.status === element);

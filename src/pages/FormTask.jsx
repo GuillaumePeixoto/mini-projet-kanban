@@ -4,10 +4,13 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function FormTask(props) {
+
   const param = useParams();
+  const navigate = useNavigate();
+
   let titlePage = "Add Task";
   let taskToUpdate;
   if (param["id"]) {
@@ -35,9 +38,9 @@ function FormTask(props) {
   const [priority, setPriority] = useState(
     taskToUpdate?.priority ? taskToUpdate.priority : "Low",
   );
-  const [createdDate, setCreatedDate] = useState(
-    taskToUpdate?.createdDate ? taskToUpdate.createdDate : defaultCreatedDate,
-  );
+
+  const createdDate = taskToUpdate?.createdDate ? taskToUpdate.createdDate : defaultCreatedDate;
+
   const [dueDate, setDueDate] = useState(
     taskToUpdate?.dueDate ? taskToUpdate.dueDate : defaultDueDate,
   );
@@ -61,11 +64,12 @@ function FormTask(props) {
       props.addTask(taskForm);
     }
 
+    navigate('/');
   }
 
   return (
     <div>
-      <h2>{titlePage}</h2>
+      <h1>{titlePage}</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Title</Form.Label>
@@ -118,19 +122,8 @@ function FormTask(props) {
             <option value="High">High</option>
           </Form.Select>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="dateSelection">
-          <Form.Label>Choisir une date</Form.Label>
-          <div className="custom-datepicker-wrapper w-100">
-            <DatePicker
-              selected={createdDate}
-              onChange={(date) => setCreatedDate(date.toISOString().split("T")[0])}
-              className="form-control"
-              dateFormat="yyyy-MM-dd"
-            />
-          </div>
-        </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Choisir une date</Form.Label>
+          <Form.Label>Due Date</Form.Label>
           <div className="custom-datepicker-wrapper w-100">
             <DatePicker
               selected={dueDate}

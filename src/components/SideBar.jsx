@@ -6,7 +6,7 @@ function SideBar() {
         <div id="side-bar">
             <div>
                 <Link to={'/'}>
-                Home
+                Board
                 </Link>
                 <Link to={'/addTask'}>
                 Add Task
